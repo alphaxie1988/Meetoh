@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mee Toh School — P2/P3 CCA Guide 2026</title>
+<style>
+  :root{
+    --red:#c8102e;
+    --gold:#f2b705;
+    --green:#1b6b3a;
+    --ink:#20242b;
+    --sub:#5b6472;
+    --bg:#f7f5ef;
+    --card:#ffffff;
+    --border:#e4e1d6;
+    --radius:14px;
+    --shadow:0 2px 10px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  a{color:var(--red);}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+
+  /* Header */
+  header.hero{
+    background:linear-gradient(135deg,var(--red) 0%, #8f0c22 60%, #6f0919 100%);
+    color:#fff;
+    padding:44px 0 34px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--gold) 0 4px, transparent 4px 100%) 0 0/100% 100%,
+               linear-gradient(90deg, var(--green) 0 4px, transparent 4px 100%) 0 100%/100% 8px;
+    opacity:.9;
+  }
+  .crest-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .crest{
+    width:54px;height:54px;border-radius:12px;background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;flex:none;box-shadow:var(--shadow);
+  }
+  header.hero h1{margin:14px 0 4px;font-size:clamp(24px,4vw,34px);letter-spacing:.2px;}
+  header.hero p.tag{margin:0;opacity:.92;font-size:15px;}
+  header.hero p.motto{margin:14px 0 0;font-size:13px;opacity:.85;letter-spacing:.4px;text-transform:uppercase;}
+  .badge-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+  .pill{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;
+    padding:6px 13px;
+    font-size:12.5px;
+  }
+
+  nav.subnav{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    position:sticky;top:0;z-index:50;
+    box-shadow:0 1px 4px rgba(0,0,0,.04);
+  }
+  nav.subnav .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 20px;}
+  nav.subnav a{
+    display:inline-block;white-space:nowrap;
+    padding:13px 12px;font-size:13.5px;font-weight:600;
+    text-decoration:none;color:var(--sub);border-bottom:3px solid transparent;
+  }
+  nav.subnav a:hover{color:var(--red);}
+
+  section{padding:38px 0;}
+  h2.section-title{
+    font-size:22px;margin:0 0 4px;display:flex;align-items:center;gap:10px;
+  }
+  h2.section-title .num{
+    background:var(--ink);color:#fff;border-radius:8px;
+    font-size:13px;padding:3px 9px;font-weight:700;
+  }
+  p.section-sub{color:var(--sub);margin:0 0 22px;font-size:14.5px;max-width:760px;}
+
+  .callout{
+    background:#fff9e8;border:1px solid #f0dca6;border-radius:var(--radius);
+    padding:18px 20px;margin-bottom:18px;
+  }
+  .callout.green{background:#eef7ef;border-color:#bfe0c6;}
+  .callout.red{background:#fdeeef;border-color:#f2c3c9;}
+  .callout h3{margin:0 0 8px;font-size:15.5px;}
+  .callout ul{margin:8px 0 0;padding-left:20px;}
+  .callout li{margin-bottom:4px;font-size:14.5px;}
+
+  table.info-table{
+    width:100%;border-collapse:collapse;background:var(--card);
+    border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+    font-size:14px;
+  }
+  table.info-table th, table.info-table td{
+    padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  table.info-table th{background:#f1eee4;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--sub);}
+  table.info-table tr:last-child td{border-bottom:none;}
+  .scroll-x{overflow-x:auto;}
+
+  /* Selection process steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px;}
+  .step{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px 16px 14px;box-shadow:var(--shadow);
+  }
+  .step .step-no{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;
+    font-size:13px;font-weight:700;margin-bottom:10px;
+  }
+  .step h4{margin:0 0 6px;font-size:14.5px;}
+  .step p{margin:0;font-size:13.5px;color:var(--sub);}
+
+  /* Controls */
+  .controls{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    margin-bottom:22px;position:sticky;top:52px;z-index:40;
+    background:var(--bg);padding:10px 0;
+  }
+  .search-box{
+    flex:1 1 220px;max-width:320px;
+    padding:9px 13px;border:1px solid var(--border);border-radius:10px;
+    font-size:14px;background:#fff;
+  }
+  .filter-btn{
+    border:1px solid var(--border);background:#fff;border-radius:999px;
+    padding:7px 14px;font-size:13px;cursor:pointer;color:var(--sub);font-weight:600;
+    transition:all .15s;
+  }
+  .filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .filter-btn:hover{border-color:var(--ink);}
+  .result-count{font-size:13px;color:var(--sub);margin-left:auto;}
+
+  /* CCA grid */
+  .group-block{margin-bottom:34px;}
+  .group-head{
+    display:flex;align-items:baseline;gap:10px;margin-bottom:14px;
+    padding-bottom:8px;border-bottom:2px solid var(--ink);
+  }
+  .group-head h3{margin:0;font-size:18px;}
+  .group-head span{font-size:13px;color:var(--sub);}
+
+  .cca-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .cca-card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;
+  }
+  .cca-card .top-row{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;}
+  .cca-card h4{margin:0;font-size:16.5px;}
+  .cat-badge{
+    font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;
+    text-transform:uppercase;letter-spacing:.3px;
+  }
+  .cat-Sports{background:#e3edfb;color:#1c4b91;}
+  .cat-PerformingArts{background:#f4e6f7;color:#7a2a8c;}
+  .cat-VisualArts{background:#fdebd6;color:#a25f11;}
+  .cat-ClubSocieties{background:#dff3ef;color:#0e7d6c;}
+  .cat-UniformGroup{background:#e6f2e1;color:#3a7027;}
+
+  .meta-row{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--sub);}
+  .meta-row b{color:var(--ink);}
+  .desc{font-size:14px;color:#3a3f47;}
+
+  .trial-flag{
+    display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;
+    color:#9a1c1c;background:#fdeaea;border:1px solid #f4c6c6;border-radius:8px;padding:4px 9px;
+    align-self:flex-start;
+  }
+  .safe-flag{
+    display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;
+    color:#166534;background:#e9f7ee;border:1px solid #bfe6cc;border-radius:8px;padding:4px 9px;
+    align-self:flex-start;
+  }
+
+  .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px;}
+  @media (max-width:420px){.pc-grid{grid-template-columns:1fr;}}
+  .pc-box h5{margin:0 0 6px;font-size:12.5px;text-transform:uppercase;letter-spacing:.3px;}
+  .pc-box.pros h5{color:#166534;}
+  .pc-box.cons h5{color:#9a1c1c;}
+  .pc-box ul{margin:0;padding-left:16px;font-size:13px;color:#40454d;}
+  .pc-box li{margin-bottom:4px;}
+
+  .tip-box{
+    background:#fbf6ea;border:1px dashed #dcc888;border-radius:10px;
+    padding:9px 11px;font-size:12.5px;color:#6a5314;
+  }
+
+  .empty-state{
+    text-align:center;padding:50px 0;color:var(--sub);font-size:14px;
+  }
+
+  footer{
+    background:var(--ink);color:#c9ccd2;padding:30px 0 40px;font-size:13px;
+  }
+  footer a{color:#f2c9cf;}
+  footer .wrap p{margin:6px 0;}
+
+  .toc-quick{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .toc-quick a{
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);
+    color:#fff;text-decoration:none;font-size:12.5px;padding:6px 12px;border-radius:999px;
+  }
+  .toc-quick a:hover{background:rgba(255,255,255,.22);}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="crest-row">
+      <div class="crest">彌</div>
+      <div>
+        <div style="font-weight:700;font-size:15px;">MEE TOH SCHOOL 彌陀學校</div>
+        <div style="font-size:12px;opacity:.85;">21 Edgedale Plains, Singapore 828867 · Founded 1954</div>
+      </div>
+    </div>
+    <h1>P2 → P3 CCA Selection Guide (2026, for CCA year 2027)</h1>
+    <p class="tag">An unofficial, parent-friendly companion to the school's CCA Awareness Day &amp; Selection Day letters — with plain-English write-ups and pros/cons for all 20 CCAs.</p>
+    <p class="motto">Motto: Compassion · Conscience · Purity · Righteousness</p>
+    <div class="badge-strip">
+      <span class="pill">📅 CCA Awareness Day: 4 Aug 2026 (Tue), 2.15–3.45pm</span>
+      <span class="pill">📝 Selection form opens: 4 Aug 2026 (All Ears)</span>
+      <span class="pill">🎯 Selection Trials: 17 Sep 2026 (Thu), 2.15–4.15pm</span>
+    </div>
+    <div class="toc-quick">
+      <a href="#process">Selection Process</a>
+      <a href="#group1">Group 1</a>
+      <a href="#group2">Group 2</a>
+      <a href="#group3">Group 3</a>
+      <a href="#tips">Tips for Parents</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="wrap">
+    <a href="#process">How Selection Works</a>
+    <a href="#groups-intro">CCA Groups</a>
+    <a href="#group1">Group 1</a>
+    <a href="#group2">Group 2</a>
+    <a href="#group3">Group 3</a>
+    <a href="#tips">Tips</a>
+    <a href="#sources">Sources &amp; Disclaimer</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="process">
+  <h2 class="section-title"><span class="num">1</span> How CCA Selection Works at Mee Toh</h2>
+  <p class="section-sub">Summarised from the school's official FAQ letter (29 July 2026) and CCA Awareness/Selection Day letter (14 July 2026).</p>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-no">1</span>
+      <h4>Attend CCA Awareness Day</h4>
+      <p>4 Aug 2026, 2.15–3.45pm. Booths for every CCA are set up at the Indoor Sports Hall (L1) and Multi-Purpose Hall (L2). Up to 2 parents may accompany each child.</p>
+    </div>
+    <div class="step">
+      <span class="step-no">2</span>
+      <h4>Choose 6 CCAs, 2 per Group</h4>
+      <p>Pick exactly 2 CCAs from each of Group 1, 2 and 3 — 6 choices total — ranked in order of preference. Submitted via the All Ears platform from 4 Aug 2026.</p>
+    </div>
+    <div class="step">
+      <span class="step-no">3</span>
+      <h4>Trial only if 1st choice is oversubscribed</h4>
+      <p>If your 1st choice CCA is <em>oversubscribed</em> (more applicants than vacancies), your child attends a selection trial on 17 Sep 2026. Other oversubscribed choices (2nd–6th) are decided by <strong>balloting</strong>, not trials.</p>
+    </div>
+    <div class="step">
+      <span class="step-no">4</span>
+      <h4>One CCA, until end of P6</h4>
+      <p>Each child is allocated only one CCA, informed via Parent Gateway in Term 4. Once assigned, students stay in that CCA until the end of Primary 6 — so choose thoughtfully!</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:20px;">
+    <h3>⚠️ Worked example from the school's own FAQ</h3>
+    <p style="font-size:14.5px;margin:0 0 8px;">A student ranks Choir (1st), Library (2nd), Chinese Dance (3rd) — and both Choir and Library happen to be oversubscribed that year:</p>
+    <ul>
+      <li><strong>Choir</strong> is oversubscribed → child attends a trial. Gets in only if they pass.</li>
+      <li>If they don't get Choir, they are <strong>not</strong> given Library either — its vacancies (filled via trial for students who put Library 1st) are already gone.</li>
+      <li>They instead drop to their <strong>3rd choice, Chinese Dance</strong> — and if that's also oversubscribed at that point, it's decided by balloting.</li>
+    </ul>
+    <p style="font-size:13px;margin-top:8px;color:var(--sub);">Takeaway: only your <em>true first choice</em> gets a fair shot via trial. Choices 2–6 for popular CCAs are essentially a lottery — so rank realistically, not just aspirationally.</p>
+  </div>
+
+  <div class="scroll-x">
+    <table class="info-table">
+      <thead><tr><th>Year</th><th>1st-choice CCAs that required a selection trial (oversubscribed)</th></tr></thead>
+      <tbody>
+        <tr><td>2025</td><td>Badminton · Basketball · Robotics · Art &amp; Craft Club · Modern Dance · Wushu</td></tr>
+        <tr><td>2024</td><td>Badminton · Basketball · Robotics · Odyssey Cub Scouts · Art &amp; Craft Club · Modern Dance · Wushu</td></tr>
+        <tr><td>2023</td><td>Badminton · Basketball · Robotics · Odyssey Cub Scouts · Art &amp; Craft Club · Modern Dance · Chinese Dance</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12.5px;color:var(--sub);margin-top:8px;">These 8 CCAs have needed a trial every year (or nearly every year) they were a 1st choice. Cards for these are flagged <span class="trial-flag" style="padding:2px 7px;">🔥 Often oversubscribed</span> below.</p>
+</section>
+
+<section id="groups-intro">
+  <h2 class="section-title"><span class="num">2</span> The 3 CCA Groups</h2>
+  <p class="section-sub">Every child selects 2 CCAs from each group. Regular sessions run Tuesdays and Thursdays, 2.15–4.15pm, unless stated otherwise; students on a school team often add a 3rd (Wed) session.</p>
+  <div class="scroll-x">
+    <table class="info-table">
+      <thead><tr><th>Group</th><th>Flavour</th><th>CCAs (20 total)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Group 1</b></td><td>Sports teams &amp; large performing-arts ensembles — generally higher time commitment, several have school teams</td><td>Wushu, Floorball, Basketball, Badminton, Malay Dance, Modern Dance, Chinese Dance, Chinese Orchestra</td></tr>
+        <tr><td><b>Group 2</b></td><td>Mixed sports, uniform group, clubs &amp; societies, visual arts</td><td>Sports Club, Odyssey Cub Scouts, Infocomm Club, Robotics, Environmental Science Club, Art &amp; Craft Club, Choir</td></tr>
+        <tr><td><b>Group 3</b></td><td>Lighter-commitment clubs &amp; societies, visual/performing arts</td><td>Calligraphy, English Drama Club, Chinese Speech &amp; Drama Club, Nature Lovers Club, Library</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="directory">
+  <h2 class="section-title"><span class="num">3</span> Full CCA Directory — Write-ups, Pros &amp; Cons</h2>
+  <p class="section-sub">Filter by category, or search a CCA by name. Descriptions are general write-ups of what each activity typically involves at primary-school level, combined with Mee Toh's own scheduling details.</p>
+
+  <div class="controls">
+    <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search a CCA (e.g. Wushu, Choir)...">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="Sports">Sports</button>
+    <button class="filter-btn" data-filter="PerformingArts">Performing Arts</button>
+    <button class="filter-btn" data-filter="VisualArts">Visual Arts</button>
+    <button class="filter-btn" data-filter="ClubSocieties">Club &amp; Societies</button>
+    <button class="filter-btn" data-filter="UniformGroup">Uniform Group</button>
+    <button class="filter-btn" data-filter="trial">🔥 Often Oversubscribed</button>
+    <span class="result-count" id="resultCount"></span>
+  </div>
+
+  <div id="ccaContainer"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">No CCAs match your filter/search. Try clearing the search box.</div>
+</section>
+
+<section id="tips">
+  <h2 class="section-title"><span class="num">4</span> Tips for Parents</h2>
+  <div class="callout green">
+    <h3>🧭 Making the 6 choices work for you</h3>
+    <ul>
+      <li><strong>Rank your true 1st choice honestly.</strong> Only your 1st choice gets a fair trial; later choices for popular CCAs are decided by balloting, not merit — so don't "waste" your 1st choice on a CCA your child isn't genuinely excited about just because it seems easier.</li>
+      <li><strong>Mix a "reach" choice with safer choices.</strong> If your child's heart is set on a historically oversubscribed CCA (Badminton, Basketball, Robotics, Wushu, Modern Dance, Art &amp; Craft Club, Odyssey Cub Scouts), put it 1st — but make choices 2–6 activities that are rarely oversubscribed, so your child isn't left purely to chance.</li>
+      <li><strong>Remember: one CCA, six years.</strong> Since the allocation lasts until the end of P6, weigh long-term fit (interest, temperament, physical demands) over short-term excitement.</li>
+      <li><strong>Check the target-group rules.</strong> A few CCAs (e.g. Robotics is generally for P5/P6, Floorball/Basketball/Badminton have age-banded session days) affect which day your child trains and who their teammates are.</li>
+      <li><strong>Factor in logistics.</strong> Sessions run 2.15–4.15pm on Tue/Thu (some Wed); school-team members may train 3x a week. Plan lunch, transport and any tuition clashes in advance.</li>
+      <li><strong>Talk to the booths on Awareness Day.</strong> This guide is a starting point — nothing beats a first-hand chat with the teachers-in-charge and current student members on 4 Aug.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sources">
+  <h2 class="section-title"><span class="num">5</span> Sources &amp; Disclaimer</h2>
+  <div class="callout red">
+    <p style="margin:0 0 8px;font-size:14px;"><strong>This is an unofficial, independently compiled parent guide</strong> — it is not published or endorsed by Mee Toh School. Always verify final details against official communications.</p>
+    <ul>
+      <li>Mee Toh School, "P2 CCA Selection Process – Frequently Asked Questions" letter, 29 July 2026 (CCA Coordinator Mr Robin Koh; HOD PE/CCA Mr Tan Chee Kian).</li>
+      <li>Mee Toh School, "P2 CCA Awareness Day and CCA Selection Day" letter, 14 July 2026, incl. Annex A (booth layout) and Annex B (CCA groupings &amp; schedule).</li>
+      <li>Mee Toh School official website: <a href="https://www.meetoh.moe.edu.sg/co-curricular-activities/overview" target="_blank" rel="noopener">meetoh.moe.edu.sg/co-curricular-activities/overview</a></li>
+      <li>General background on CCA types cross-checked via public web search (school directories, CCA guides).</li>
+    </ul>
+    <p style="margin-top:10px;font-size:13px;color:var(--sub);">Pros/cons write-ups reflect general characteristics of each activity type at primary-school level, plus Mee Toh-specific scheduling and oversubscription data from the two letters above — they are a discussion aid for families, not an official ranking or guarantee of outcomes.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Mee Toh School CCA Guide</strong> — built for P2 parents preparing for the 2026 CCA Selection exercise (CCA year 2027).</p>
+    <p>Not an official Mee Toh School / MOE publication. For authoritative information, refer to Parent Gateway announcements and the school directly at 6489 3326 / meetoh_sch@moe.edu.sg.</p>
+  </div>
+</footer>
+
+<script>
+const CCAS = [
+  // GROUP 1
+  {group:1, name:"Wushu", category:"Sports", schedule:"Tue (all members) · Wed &amp; Thu (school team)", target:"All members",
+   desc:"Traditional Chinese martial art blending kung-fu forms, weapons routines and basic sparring fundamentals. Strong emphasis on discipline, flexibility and stage-quality performance.",
+   pros:["Builds flexibility, strength, discipline and self-confidence","Culturally enriching link to Chinese heritage","Good stress outlet with a clear sense of skill progression","Performance opportunities at school events"],
+   cons:["Physically demanding with a real (if manageable) injury risk from stretching/tumbling","Consistently oversubscribed as a 1st choice every year 2023–2025","School-team members commit to up to 3 sessions a week"],
+   trialYears:[2023,2024,2025]},
+
+  {group:1, name:"Floorball", category:"Sports", schedule:"Tue &amp; Thu, by age band + school team", target:"P3–P6 (banded by day), School Team",
+   desc:"A fast, non-contact indoor hockey-style sport played with plastic sticks and a light perforated ball — an increasingly popular sport in Singapore primary schools.",
+   pros:["Not historically oversubscribed — realistic chance of getting it as 1st choice","Builds cardio fitness, agility and quick teamwork decisions","Non-contact, so generally safer than basketball/wushu","Great for beginners with no prior sport experience"],
+   cons:["Lower profile and smaller competitive scene than basketball or badminton","Indoor hall sessions can be noisy and physically intense","Fewer secondary-school pathways compared to mainstream ball sports"],
+   trialYears:[]},
+
+  {group:1, name:"Basketball", category:"Sports", schedule:"Tue (P3, P4) · Thu (P5, P6)", target:"P3–P6",
+   desc:"One of the most popular team sports in Singapore schools — ball-handling, shooting, and defensive drills building towards inter-school competitions.",
+   pros:["High-energy fitness building and strong team bonding","Well-established competitive pathway (National School Games and beyond)","Skills transfer well into secondary school CCA teams"],
+   cons:["Consistently oversubscribed as 1st choice every year 2023–2025 — trial required, no guarantee of a place","Taller/more athletic children may have an edge at trials","Higher risk of minor injuries (sprains, collisions) than non-contact sports"],
+   trialYears:[2023,2024,2025]},
+
+  {group:1, name:"Badminton", category:"Sports", schedule:"Tue (P3,P5,P6) · Wed (P3,P4) · Thu (P4,P5,P6)", target:"P3–P6",
+   desc:"Racquet sport building footwork, reflexes and stamina — one of the most widely offered and competitive CCAs at every level in Singapore, up to National School Games.",
+   pros:["Individual racquet skill useful for life, not just in school","Excellent for coordination and cardio fitness","Strong competitive pathway if selected for the school team","Lower injury risk than contact sports"],
+   cons:["Mee Toh's most consistently oversubscribed CCA — trial almost guaranteed if picked 1st, 3 years running","Racquet, shoes and shuttlecocks add to household costs over time","Larger intake can mean less 1-on-1 coaching attention per session"],
+   trialYears:[2023,2024,2025]},
+
+  {group:1, name:"Malay Dance", category:"PerformingArts", schedule:"Tue (all members) · Thu (adhoc, event-based)", target:"All members",
+   desc:"Traditional and contemporary Malay dance performed at school concerts, Racial Harmony Day and National Day events — focused on grace, rhythm and cultural storytelling.",
+   pros:["Not historically oversubscribed — easier to secure as 1st choice","Builds poise, rhythm and stage confidence in a smaller, close-knit group","Meaningful cross-cultural exposure — open and valuable for children of any race"],
+   cons:["Fewer performance/competition opportunities than mainstream sports","Adhoc Thursday sessions mean less predictable practice time","Limited pathway for continued dance training beyond school level"],
+   trialYears:[]},
+
+  {group:1, name:"Modern Dance", category:"PerformingArts", schedule:"Tue (adhoc, event-based) · Thu (all members)", target:"All members",
+   desc:"Contemporary dance styles (jazz/hip-hop-influenced) choreographed for school concerts and Sports Day — energetic and set to current music.",
+   pros:["High popularity and fun factor with children","Builds fitness, rhythm and creative expression","Frequent visibility at school assemblies and concerts"],
+   cons:["Oversubscribed as 1st choice every year 2023–2025 — trial required","Trials may favour children with some prior dance experience","Can be physically tiring with intensive routine practice before events"],
+   trialYears:[2023,2024,2025]},
+
+  {group:1, name:"Chinese Dance", category:"PerformingArts", schedule:"Tue (all members) · Thu (school team)", target:"All members, School Team",
+   desc:"Classical and ethnic Chinese dance using props such as fans and ribbons — a flagship performing-arts CCA often featured at Chinese New Year and major school events.",
+   pros:["Strong cultural and artistic development","Disciplined training builds flexibility and stage presence","High-visibility performance platform at school events"],
+   cons:["Was oversubscribed as a 1st choice in 2023 — trial risk in some years","School-team members take on an extra Thursday commitment","Costuming/makeup for performances may add small extra costs"],
+   trialYears:[2023]},
+
+  {group:1, name:"Chinese Orchestra", category:"PerformingArts", schedule:"Tue &amp; Thu — combined + sectional (by instrument) practice", target:"All members, School Team, Selected Groups",
+   desc:"Traditional Chinese instrumental ensemble (e.g. erhu, pipa, dizi, percussion). Members are usually assigned an instrument section and progress through sectional and combined rehearsals.",
+   pros:["Deep musicality, discipline and teamwork within a large ensemble","Instrument mastery is a genuinely transferable, resume-worthy skill","Strong sense of belonging as part of a big, structured CCA"],
+   cons:["Steep learning curve for children with no prior music background","Instrument allocation may not match a child's personal preference","Combined + sectional structure means a more complex, sometimes longer, rehearsal schedule"],
+   trialYears:[]},
+
+  // GROUP 2
+  {group:2, name:"Sports Club", category:"Sports", schedule:"Thu (all members)", target:"All members",
+   desc:"A general sports and games CCA rather than one dedicated sport — broad-based physical activities and games for children who enjoy sport but aren't drawn to a single team.",
+   pros:["Only 1 session a week — the lightest time commitment among sports options","Broad exposure to multiple sports/games rather than one specialty","Inclusive and low-pressure, good fitness habit-builder"],
+   cons:["Less specialised skill development than a single dedicated sport","Fewer competition or school-team opportunities","Can feel less structured than track-specific CCAs"],
+   trialYears:[]},
+
+  {group:2, name:"Odyssey Cub Scouts", category:"UniformGroup", schedule:"Tue (all members)", target:"All members",
+   desc:"Uniformed youth group teaching outdoor skills, first aid, camping, community service and leadership through a badge-based progression system, aligned to national Scouting.",
+   pros:["Strong life-skills and character development — leadership, resilience, teamwork","Badge system gives a clear, motivating sense of progress","Camps and outdoor activities are memorable confidence-builders","Nationally recognised uniformed-group pathway"],
+   cons:["Was oversubscribed as a 1st choice in 2023 and 2024 — trial risk","Uniform and camp gear add to household costs","Overnight camps depend on weather and may feel daunting for a young P3 first-timer"],
+   trialYears:[2023,2024]},
+
+  {group:2, name:"Infocomm Club", category:"ClubSocieties", schedule:"Tue (all members)", target:"All members",
+   desc:"Introduces basic coding, digital literacy and IT applications — a gentler, broader on-ramp into technology than the more competition-focused Robotics CCA.",
+   pros:["Not oversubscribed — comparatively easy to secure","Builds foundational digital literacy useful across every subject","Lower physical demand, suits children less inclined towards sport"],
+   cons:["Less hands-on/hardware-based than Robotics","Fewer high-profile external competitions","More screen-time-heavy than most other CCAs — a factor for some families"],
+   trialYears:[]},
+
+  {group:2, name:"Robotics", category:"ClubSocieties", schedule:"Tue — regular membership: P5 &amp; P6", target:"P5 &amp; P6 members",
+   desc:"Hands-on STEM CCA combining building, coding and problem-solving, typically culminating in robotics competitions. Note: regular membership is aimed at P5/P6 students.",
+   pros:["Excellent STEM, coding and problem-solving exposure","Strong competition pathway (robotics tournaments) that stands out on a portfolio","Highly sought-after — a genuine badge of achievement if selected"],
+   cons:["The single most consistently oversubscribed CCA — trial required every year 2023–2025, real chance of missing out","Target group of 'P5 &amp; P6 members' suggests a P3 entrant may face a longer wait before full participation","Take-home practice kits, if expected, can add to costs"],
+   trialYears:[2023,2024,2025]},
+
+  {group:2, name:"Environmental Science Club", category:"ClubSocieties", schedule:"Tue (all members)", target:"All members",
+   desc:"Explores sustainability, nature conservation and basic science through activities such as gardening, recycling projects and eco-awareness campaigns.",
+   pros:["Not oversubscribed — a solid, reliable back-up choice","Instils environmental awareness and civic-mindedness early","Hands-on and low-pressure; complements the Science curriculum"],
+   cons:["Lower profile / less immediately 'exciting' to some children than sports or performing arts","Fewer competitive or performance showcase opportunities","Impact of the work can feel abstract to younger children"],
+   trialYears:[]},
+
+  {group:2, name:"Art &amp; Craft Club", category:"VisualArts", schedule:"Tue (all members)", target:"All members",
+   desc:"Covers drawing, painting and craft techniques, encouraging creativity and fine-motor skills; student work is often showcased at school exhibitions.",
+   pros:["Great creative outlet that builds fine motor skills and patience","Suits quieter or more artistic children who prefer lower physical intensity","Tangible, rewarding results (finished artwork, exhibitions)"],
+   cons:["Oversubscribed as a 1st choice every year 2023–2025 — trial required","Art materials may need topping up at home over time","Less team-sport-style bonding compared with sports CCAs"],
+   trialYears:[2023,2024,2025]},
+
+  {group:2, name:"Choir", category:"PerformingArts", schedule:"Tue (adhoc, event-based) · Thu (all members)", target:"All members",
+   desc:"Vocal ensemble performing at school assemblies, concerts and events — training in vocal technique, harmony and stage presence.",
+   pros:["Builds musicality, breath control and public-performance confidence","Inclusive — needs only a voice, no instrument or equipment","Regular, visible performance platform at school events"],
+   cons:["Tuesday sessions are 'adhoc', so the schedule can feel less predictable","Vocal skill can take longer to show visible 'achievement' than sports/instruments","Less individual attention within a large ensemble"],
+   trialYears:[], tip:"Used as the school's own illustrative example of an oversubscribed CCA in the FAQ letter — worth checking current-year demand directly, even though it isn't on the official 3-year trial list."},
+
+  // GROUP 3
+  {group:3, name:"Calligraphy", category:"VisualArts", schedule:"Tue (all members)", target:"All members",
+   desc:"Chinese brush calligraphy focused on stroke technique, ink control and classical characters — often linked to Chinese Language enrichment.",
+   pros:["Calming, meditative practice with a light physical load","Improves handwriting, fine motor control and patience","Complements Chinese Language learning; low equipment cost"],
+   cons:["Repetitive practice may feel less exciting to some children","Progress is slower and less visible than in performance-based CCAs","Limited competition/showcase opportunities compared to other Visual Arts options"],
+   trialYears:[]},
+
+  {group:3, name:"English Drama Club", category:"PerformingArts", schedule:"Thu (all members)", target:"All members",
+   desc:"Develops acting, scriptwriting and stage presence through English-language drama productions and speech activities.",
+   pros:["Builds public speaking, confidence and communication skills valuable across every subject","Fun, expressive and social — a strong all-round soft-skills CCA","Only 1 session a week — a lighter time commitment"],
+   cons:["Single weekly session may limit skill depth compared with twice-weekly CCAs","Performance opportunities may be less frequent than dance/music groups","Can feel daunting for shy children initially (though this typically improves)"],
+   trialYears:[]},
+
+  {group:3, name:"Chinese Speech and Drama Club", category:"PerformingArts", schedule:"Tue (all members) · Thu (adhoc, event-based)", target:"All members",
+   desc:"Mandarin-language equivalent of English Drama — strengthens oral Chinese, expression and performance skills through speech and drama activities.",
+   pros:["Strengthens spoken Chinese and public-speaking confidence, bilingually","Complements Higher Chinese / Mother Tongue Language learning","Good fit for children who enjoy both language and drama"],
+   cons:["Requires reasonable comfort speaking Mandarin, which may challenge some children","Adhoc Thursday sessions mean less consistent practice rhythm","Smaller competition/showcase scene than the English Drama Club"],
+   trialYears:[]},
+
+  {group:3, name:"Nature Lovers Club", category:"ClubSocieties", schedule:"Tue (all members)", target:"All members",
+   desc:"Outdoor-oriented club for children interested in flora, fauna and nature appreciation — likely including field trips, nature walks and observation activities.",
+   pros:["Encourages curiosity about the natural world in a hands-on, outdoor setting","Low-pressure and calming for children who dislike competitive environments","Good complement to the Science subject"],
+   cons:["Outdoor activities are weather-dependent","Lower profile with fewer competitions or showcases","Content may overlap with the Environmental Science Club — compare both before choosing"],
+   trialYears:[]},
+
+  {group:3, name:"Library", category:"ClubSocieties", schedule:"Tue (all members)", target:"All members",
+   desc:"Trains student librarians to help manage the school library, assist with book circulation, and promote a reading culture among peers (e.g. reading programmes, book displays).",
+   pros:["Calm, low-physical-demand CCA well suited to quieter, bookish children","Builds responsibility, organisational skills and early leadership as a student librarian","A supportive, service-oriented entry point for less sporty or performance-inclined children"],
+   cons:["Demand can spike in some years — not guaranteed to be an 'easy' choice every year","Day-to-day tasks (shelving, circulation admin) are fairly repetitive","Fewer performance/competition showcases than arts or sports CCAs"],
+   trialYears:[], tip:"Used, alongside Choir, as the school's own illustrative example of an oversubscribed CCA in the FAQ letter — this doesn't appear on the official 3-year trial list, so treat it as a 'can spike' rather than a 'usually safe' pick."},
+];
+
+const GROUP_LABEL = {1:"Group 1", 2:"Group 2", 3:"Group 3"};
+const CAT_LABEL = {Sports:"Sports", PerformingArts:"Performing Arts", VisualArts:"Visual Arts", ClubSocieties:"Club &amp; Societies", UniformGroup:"Uniform Group"};
+
+function cardHTML(c){
+  const trialTag = c.trialYears.length
+    ? `<span class="trial-flag">🔥 Trial needed: ${c.trialYears.join(', ')}</span>`
+    : `<span class="safe-flag">✅ No selection trial on record (2023–25)</span>`;
+  return `
+  <div class="cca-card" data-group="${c.group}" data-category="${c.category}" data-trial="${c.trialYears.length?1:0}" data-name="${c.name.toLowerCase()}">
+    <div class="top-row">
+      <h4>${c.name}</h4>
+      <span class="cat-badge cat-${c.category}">${CAT_LABEL[c.category]}</span>
+    </div>
+    ${trialTag}
+    <div class="meta-row">
+      <span><b>Schedule:</b> ${c.schedule}</span>
+      <span><b>Target:</b> ${c.target}</span>
+    </div>
+    <div class="desc">${c.desc}</div>
+    <div class="pc-grid">
+      <div class="pc-box pros"><h5>Pros</h5><ul>${c.pros.map(p=>`<li>${p}</li>`).join('')}</ul></div>
+      <div class="pc-box cons"><h5>Cons</h5><ul>${c.cons.map(p=>`<li>${p}</li>`).join('')}</ul></div>
+    </div>
+    ${c.tip ? `<div class="tip-box">💡 ${c.tip}</div>` : ''}
+  </div>`;
+}
+
+function render(){
+  const container = document.getElementById('ccaContainer');
+  container.innerHTML = [1,2,3].map(g => {
+    const items = CCAS.filter(c => c.group === g);
+    return `<div class="group-block" id="group${g}">
+      <div class="group-head"><h3>${GROUP_LABEL[g]}</h3><span>select 2 from this group</span></div>
+      <div class="cca-grid">${items.map(cardHTML).join('')}</div>
+    </div>`;
+  }).join('');
+  applyFilter();
+}
+
+let activeFilter = 'all';
+function applyFilter(){
+  const q = document.getElementById('searchBox').value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.cca-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const cat = card.dataset.category;
+    const isTrial = card.dataset.trial === '1';
+    const name = card.dataset.name;
+    let matchFilter = true;
+    if(activeFilter === 'trial') matchFilter = isTrial;
+    else if(activeFilter !== 'all') matchFilter = (cat === activeFilter);
+    const matchSearch = !q || name.includes(q);
+    const show = matchFilter && matchSearch;
+    card.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+  document.querySelectorAll('.group-block').forEach(block => {
+    const anyVisible = Array.from(block.querySelectorAll('.cca-card')).some(c => c.style.display !== 'none');
+    block.style.display = anyVisible ? '' : 'none';
+  });
+  document.getElementById('resultCount').textContent = `${visible} of ${cards.length} CCAs shown`;
+  document.getElementById('emptyState').style.display = visible === 0 ? '' : 'none';
+}
+
+document.getElementById('searchBox').addEventListener('input', applyFilter);
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilter();
+  });
+});
+
+render();
+</script>
+
+</body>
+</html>
